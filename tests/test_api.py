@@ -60,6 +60,5 @@ class TestApi(unittest.TestCase):
         self.assertEqual(result, expected_response)
 
 
-        
 if __name__ == '__main__':
     unittest.main()
