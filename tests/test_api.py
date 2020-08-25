@@ -51,7 +51,7 @@ class TestApi(unittest.TestCase):
 
     @mock.patch('requests.get')
     def test_get_recipe_by_id(self, mock_get):
-        expected_response = {'the best': 'meal'}
+        expected_response = {'not': 'taco bell'}
         mock_response = self._mock_response(json_response=expected_response)
         mock_get.return_value = mock_response
 
