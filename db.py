@@ -13,10 +13,12 @@ def load_diets():
 
 
 def db_connect(db_path=DEFAULT_PATH):
+    # todo add context manager here so that it closes db connection
     return sqlite3.connect(db_path)
 
 
 def create_table():
+
     diets = load_diets()
     cols = sorted(list(set([col for diet in diets for col in list(diet.keys())])))
 
@@ -40,3 +42,11 @@ def insert_diet_data():
             insert_statement = f'INSERT INTO diets VALUES(?,?)'
             strict = ', '.join(items[1])
             cur.executemany(insert_statement, [(str(items[0]), strict)])
+    con.commit()
+
+
+def get_ingredient_violations_by_diet(diet: str):
+    con = db_connect()
+    cur = con.cursor()
+    filter_statement = f'SELECT ingredient FROM diets WHERE violations LIKE "%{diet}%"'
+    return cur.execute(filter_statement).fetchall()
