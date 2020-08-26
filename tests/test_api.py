@@ -48,17 +48,7 @@ class TestApi(unittest.TestCase):
         result = get_recipe_by_ingredients(ingredients=['yummy', 'things'])
 
         self.assertEqual(result, expected_response)
-
-    @mock.patch('requests.get')
-    def test_get_recipe_by_id(self, mock_get):
-        expected_response = {'not': 'taco bell'}
-        mock_response = self._mock_response(json=expected_response)
-        mock_get.return_value = mock_response
-
-        result = get_recipe_by_id(recipe_id='8080')
-
-        self.assertEqual(result, expected_response)
-
+        
     @mock.patch('requests.get')
     def test_get_recipe_by_diet(self, mock_get):
         expected_response = {'a very': 'vegan meal'}
@@ -69,6 +59,6 @@ class TestApi(unittest.TestCase):
 
         self.assertEqual(result, expected_response)
 
-g
+
 if __name__ == '__main__':
     unittest.main()
