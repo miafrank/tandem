@@ -1,6 +1,10 @@
+import itertools
+from pprint import pprint
+
 import requests
 
 from config import *
+from db import get_ingredient_violations_by_diet
 
 
 def get_recipe_by_name(recipe_name: str):
@@ -17,6 +21,14 @@ def get_recipe_by_ingredients(ingredients: list):
 
 
 def get_recipe_by_diet(diet: str):
-    resp = requests.get(f'{API_URL}/filter.php?c={diet}')
-    resp.raise_for_status()
-    return resp.json()
+    taco_recipes = get_recipe_by_name(MEAL)['results']
+    # get list of all ingredients that violate diet
+    filter_by_diet = list(itertools.chain(*get_ingredient_violations_by_diet(diet)))
+    return [tacos
+            for tacos in taco_recipes
+            if ','.join(filter_by_diet) not in tacos['ingredients']] \
+        if taco_recipes \
+        else []
+
+
+pprint(get_recipe_by_diet('halal'))
