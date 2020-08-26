@@ -48,7 +48,7 @@ class TestApi(unittest.TestCase):
         result = get_recipe_by_ingredients(ingredients=['yummy', 'things'])
 
         self.assertEqual(result, expected_response)
-        
+
     @mock.patch('requests.get')
     def test_get_recipe_by_diet(self, mock_get):
         expected_response = {'a very': 'vegan meal'}
