@@ -1,12 +1,10 @@
 import itertools
-import logging
-from logging.handlers import RotatingFileHandler
+
 from flask import Flask, jsonify
 
+from db import *
 from diets import load_diets
 from utils import *
-from db import *
-
 
 app = Flask(__name__)
 
