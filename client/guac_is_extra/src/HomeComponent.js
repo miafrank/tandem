@@ -3,19 +3,50 @@ import React from 'react';
 import APIClient from './client.js';
 
 class HomeComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.recipes = props.recipes;
+  }
   state = {
     recipes: [],
   };
 
   async componentDidMount() {
     this.client = new APIClient();
-    this.client
-      .getRecipeByIngredient('chicken')
-      .then((data) =>
-        this.setState({ ...this.state, recipes: data['tacos']['results'] })
-      );
+    this.client.getRecipeByIngredient('chicken').then((data) => {
+      this.setState({ ...this.state, recipes: data['tacos']['results'] });
+    });
   }
-  //   data) => JSON.parse(data['tacos']['result'])
+
+  getKeys = function () {
+    return this.state.recipes.map((recipe) => Object.keys(recipe));
+  };
+
+  getValues = function () {
+    return this.state.recipes.map((recipe) => Object.values(recipe));
+  };
+
+  getHeader = function () {
+    const keys = this.getKeys();
+    return keys.map((k, i) => {
+      return <th key={k[i]}>{k[i]}</th>;
+    });
+  };
+
+  getRowsData = function () {
+    const data = this.getValues();
+    const keys = this.getKeys();
+
+    return data.map((k, i) => {
+      return (
+        <tr key={i}>
+          <RenderRow key={i} data={k} keys={keys} />
+        </tr>
+      );
+    });
+  };
+
   destructureArray(arr) {
     return {
       href: arr.href,
@@ -27,36 +58,20 @@ class HomeComponent extends React.Component {
   render() {
     return (
       <table>
-        {this.state.recipes.map((recipe) =>
-          Object.keys(recipe).map((obj) => <td>{recipe[obj]}</td>)
-        )}
         <thead>
-          <tr>
-            <th>Link</th>
-            <th>Ingredients</th>
-            <th>Thumbnail</th>
-            <th>Title</th>
-          </tr>
+          <tr>{this.getHeader()}</tr>
         </thead>
         <tbody>
-          <tr></tr>
+          <tr>{this.getRowsData()}</tr>
         </tbody>
-
-        {/* <tr>
-          {this.state.recipes.map((recipe) => {
-            // const obj = this.destructureArray(recipe);
-            <td>{recipe}</td>;
-            // <td>{recipe.ingredients}</td>;
-          })}
-        </tr> */}
-        {/* <ul>
-          {this.state.recipes.map((recipe) =>
-            Object.keys(recipe).map((obj) => <li>{recipe[obj]}</li>)
-          )}
-        </ul> */}
       </table>
     );
   }
 }
 
+const RenderRow = (props) => {
+  return props.keys.map((key, index) => {
+    return <td key={props.data[key]}>{props.data[key]}</td>;
+  });
+};
 export default HomeComponent;
