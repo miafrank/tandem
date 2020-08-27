@@ -17,7 +17,6 @@ def db_connect(db_path=DEFAULT_PATH):
 
 
 def create_table():
-
     diets = load_diets()
     cols = sorted(list(set([col for diet in diets for col in list(diet.keys())])))
 
