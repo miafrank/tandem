@@ -45,13 +45,50 @@
     {
     "ingredient": "steak",
     "violations": [
-      "gluten-free"
+      "vegetarian",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "sirloin steak",
+    "violations": [
+      "vegetarian",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "tilapia fillets",
+    "violations": [
+      "vegetarian",
+      "vegan"
+    ]
+  },
+    {
+    "ingredient": "ground beef",
+    "violations": [
+      "vegetarian",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "shrimp",
+    "violations": [
+      "vegetarian",
+      "vegan"
     ]
   },
   {
     "ingredient": "hamburger",
     "violations": [
-    "gluten-free"
+      "vegetarian",
+      "vegan"
+    ]
+  },
+    {
+    "ingredient": "salmon",
+    "violations": [
+      "vegetarian",
+      "vegan"
     ]
   },
   {
