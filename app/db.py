@@ -27,6 +27,7 @@ def create_table():
     cursor.execute(create_statement)
 
 
+# todo - reload data with updates
 def insert_diet_data():
     con = db_connect()
     cur = con.cursor()
