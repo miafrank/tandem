@@ -1,0 +1,83 @@
+[
+  {
+    "ingredient": "chicken",
+    "violations": [
+      "vegetarian",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "beef",
+    "violations": [
+      "vegetarian",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "steak",
+    "violations": [
+      "vegetarian",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "pork",
+    "violations": [
+      "vegetarian",
+      "vegan",
+      "halal",
+      "kosher"
+    ]
+  },
+  {
+    "ingredient": "tuna",
+    "violations": [
+      "vegetarian",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "flour",
+    "violations": [
+      "gluten-free"
+    ]
+  },
+    {
+    "ingredient": "steak",
+    "violations": [
+      "gluten-free"
+    ]
+  },
+  {
+    "ingredient": "hamburger",
+    "violations": [
+    "gluten-free"
+    ]
+  },
+  {
+    "ingredient": "egg",
+    "violations": [
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "cheese",
+    "violations": [
+      "dairy-free",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "milk",
+    "violations": [
+      "dairy-free",
+      "vegan"
+    ]
+  },
+  {
+    "ingredient": "peanuts",
+    "violations": [
+      "nut allergy"
+    ]
+  }
+]
