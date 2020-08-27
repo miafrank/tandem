@@ -1,6 +1,6 @@
 import requests
 from http import HTTPStatus
-from app.config import *
+from config import *
 
 
 def get_recipe_by_name(recipe_name: str):

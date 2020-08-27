@@ -1,7 +1,7 @@
 import unittest
 from unittest import mock
 
-from app.utils import *
+from utils import *
 
 
 class TestApi(unittest.TestCase):

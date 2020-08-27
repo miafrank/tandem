@@ -1,9 +1,11 @@
 import itertools
 import logging
-
+from logging.handlers import RotatingFileHandler
 from flask import Flask, jsonify
-from app.utils import *
-from app.db import *
+
+from diets import load_diets
+from utils import *
+from db import *
 
 
 app = Flask(__name__)
@@ -30,12 +32,12 @@ def search_by_diet(diet):
 
 
 if __name__ == "__main__":
-    logging.info("Creating table with diet ingredients")
+    app.logger.info("Creating table with diet ingredients")
     diet_list = load_diets()
     cols = create_cols_from_diets(diet_list)
     create_table(cols)
     insert_diet_data(diet_list)
-    logging.info("Finished creating diet ingredient table")
+    app.logger.info("Finished creating diet ingredient table")
 
     app.debug = True
     app.run()

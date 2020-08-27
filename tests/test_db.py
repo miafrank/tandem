@@ -1,8 +1,6 @@
-from unittest.mock import MagicMock, Mock
 import unittest
 from unittest import mock
-from sqlite3 import Cursor
-from app.db import *
+from db import *
 
 
 class TestDB(unittest.TestCase):

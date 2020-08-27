@@ -1,8 +1,6 @@
 import os
 import sqlite3
 
-from app.diets import load_diets
-
 DEFAULT_PATH = os.path.join(os.path.dirname(__file__), 'database.sqlite3')
 
 
