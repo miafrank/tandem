@@ -1,3 +1,4 @@
+import math
 import unittest
 from http import HTTPStatus
 from unittest import mock
@@ -28,36 +29,75 @@ class TestApi(unittest.TestCase):
 
     @mock.patch('requests.get')
     # patch() will clean up your code by replacing the mocked objects with their original counterparts.
-    # When you substitute an object in your code, the Mock must look like the real object it is replacing.
-    # Otherwise, your code will not be able to use the Mock in place of the original object.
+    # when you substitute an object in your code, the Mock must look like the real object it is replacing.
+    # otherwise, your code will not be able to use the Mock in place of the original object.
     def test_get_recipe_by_name(self, mock_get):
-        expected_response = {'tests': 'meals'}
-        mock_response = self._mock_response(json=expected_response)
+        expected_response = [{'the best': 'meal'}]
+        mock_response = self._mock_response(json={'results': [{'the best': 'meal'}]})
         mock_get.return_value = mock_response
 
-        result = get_recipe_by_name(recipe_name='tests')
+        result = get_recipe_by_name(recipe_name='a cool one')
 
-        self.assertEqual(result, expected_response)
+        self.assertEqual(expected_response, result)
 
     @mock.patch('requests.get')
     def test_get_recipe_by_ingredients(self, mock_get):
-        expected_response = {'the best': 'meal'}
-        mock_response = self._mock_response(json=expected_response)
+        expected_response = [{'the best': 'meal'}]
+        mock_response = self._mock_response(json={'results': [{'the best': 'meal'}]})
         mock_get.return_value = mock_response
 
         result = get_recipe_by_ingredients(ingredients=['yummy', 'things'])
 
-        self.assertEqual(result, expected_response)
+        self.assertEqual(expected_response, result)
 
-    @mock.patch('requests.get')
-    def test_get_recipe_by_diet(self, mock_get):
-        expected_response = {'results': 'vegan meal'}
-        mock_response = self._mock_response(json=expected_response)
-        mock_get.return_value = mock_response
+    def test_get_recipes_by_diet_vegetarian(self):
+        chicken_taco_recipe = [
+            {
+                "href": "http://www.recipezaar.com/Chicken-Tacos-the-Tahiti-Way-94613",
+                "ingredients": "black pepper, chicken, cilantro, corn tortillas, garlic, onions, pepperoncini pepper",
+                "thumbnail": "",
+                "title": "Chicken Tacos - the Tahiti Way"
+            },
+        ]
+        vegetarian_violations = ['chicken', 'beef', 'steak', 'pork', 'tuna']
 
-        result = get_recipe_by_diet(unsafe_ingredient='vegan')
+        expected = []
 
-        self.assertEqual(result, expected_response)
+        result = filter_recipes_by_diet(chicken_taco_recipe, vegetarian_violations)
+        self.assertEqual(result, expected)
+
+    def test_get_recipes_by_diet_no_diet(self):
+        chicken_taco_recipe = [
+            {
+                "href": "http://www.recipezaar.com/Chicken-Tacos-the-Tahiti-Way-94613",
+                "ingredients": "black pepper, chicken, cilantro, corn tortillas, garlic, onions, pepperoncini "
+                               "pepper",
+                "thumbnail": "",
+                "title": "Chicken Tacos - the Tahiti Way"
+            },
+        ]
+        vegetarian_violations = []
+
+        expected = chicken_taco_recipe
+
+        result = filter_recipes_by_diet(chicken_taco_recipe, vegetarian_violations)
+        self.assertEqual(expected, result)
+
+    def test_get_recipes_by_diet_no_peanut_allergy(self):
+        peanut_recipe = [
+            {
+                "href": "http://www.epicurious.com/recipes/food/views/Chocolate-Cups-with-Ice-Cream-and-Peanuts-108905",
+                "ingredients": "peanuts, semisweet chocolate, ice cream, vegetable oil",
+                "thumbnail": "http://img.recipepuppy.com/132916.jpg",
+                "title": "Chocolate Cups with Ice Cream and Peanuts"
+            }
+        ]
+        vegetarian_violations = ['peanuts']
+
+        expected = []
+
+        result = filter_recipes_by_diet(peanut_recipe, vegetarian_violations)
+        self.assertEqual(expected, result)
 
 
 if __name__ == '__main__':

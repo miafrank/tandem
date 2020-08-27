@@ -1,5 +1,8 @@
+import itertools
+
 from flask import Flask, jsonify, request
 
+from app.db import get_ingredient_violations_by_diet
 from app.helper import *
 from app.config import MEAL
 
