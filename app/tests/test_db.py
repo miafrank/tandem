@@ -6,6 +6,16 @@ from app.db import *
 
 
 class TestDB(unittest.TestCase):
+
+    def _mock_db(self, execute_statement=None, table_return_value=None):
+        mock_db = mock.Mock()
+        mock_db.connect = "connected successfully"
+        mock_db.path = "fake path"
+        mock_db.execute = "executed query"
+        if execute_statement:
+            mock_db.execute = execute_statement
+        return mock_db
+
     @mock.patch('sqlite3.connect')
     def test_sql_connect(self, mock_sql):
         mock_sql.connect.return_value = "connected successfully"
@@ -32,8 +42,7 @@ class TestDB(unittest.TestCase):
         mock_sql.executemany.return_value = ['some', 'values']
         mock_sql.commit.return_value = 'inserted successfully'
 
-        diets = [{'peanut': ['allergy', 'for sure']},
-                 {'m&ms': 'have peanuts in them sometimes'}]
+        diets = [{'ingredient': 'chicken', 'violations': ['vegetarian', 'vegan']}]
 
         insert_diet_data(diets)
 
