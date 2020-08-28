@@ -1,4 +1,5 @@
 import unittest
+from http import HTTPStatus
 from unittest import mock
 
 from utils import *

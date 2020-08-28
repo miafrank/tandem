@@ -8,12 +8,14 @@ class TestDB(unittest.TestCase):
     @mock.patch('sqlite3.connect')
     def test_sql_connect(self, mock_sql):
         mock_sql.connect.return_value = "connected successfully"
+
         db_connect()
         self.assertTrue(mock_sql.called)
 
     def test_create_cols_from_diets(self):
         diet_cols = [{'violations': ''}, {'ingredient': ''}]
         expected = ['ingredient', 'violations']
+
         result = create_cols_from_diets(diet_cols)
         self.assertEqual(expected, result)
 
@@ -30,16 +32,15 @@ class TestDB(unittest.TestCase):
     def test_insert_diet_data(self, mock_sql):
         mock_sql.executemany.return_value = ['some', 'values']
         mock_sql.commit.return_value = 'inserted successfully'
-
         diets = [{'ingredient': 'chicken', 'violations': ['vegetarian', 'vegan']}]
 
         insert_diet_data(diets)
-
         self.assertTrue(mock_sql.called)
 
     @mock.patch('sqlite3.connect')
     def test_get_ingredient_violations_by_diet(self, mock_sql):
         mock_sql.return_value.execute = ['some', 'violations']
         diet = 'no sugar'
+
         get_ingredient_violations_by_diet(diet)
         self.assertTrue(mock_sql.called)
