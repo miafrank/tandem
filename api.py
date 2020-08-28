@@ -14,13 +14,13 @@ app.logger.setLevel(level=logging.INFO)
 
 @app.route('/recipes/<name>', methods=['GET'])
 def view_recipes_by_name(name):
-    return jsonify(tacos=get_recipe_by_name(name))
+    return jsonify(recipes=get_recipe_by_name(name))
 
 
 @app.route('/recipes/<name>/ingredients/<ingredients>', methods=['GET'])
 def search_by_ingredients(name, ingredients):
     ingredients_list = ingredients.split(',')
-    return jsonify(tacos=get_recipe_by_ingredients(name, ingredients_list)) \
+    return jsonify(recipes=get_recipe_by_ingredients(name, ingredients_list)) \
         if ingredients else jsonify(error=HTTPStatus.NOT_ACCEPTABLE)
 
 
@@ -28,7 +28,7 @@ def search_by_ingredients(name, ingredients):
 def search_by_diet(name, diet):
     recipes = get_recipe_by_name(name)
     filter_by_diet = list(itertools.chain(*get_ingredient_violations_by_diet(diet)))
-    return jsonify(tacos=filter_recipes_by_diet(recipes, filter_by_diet)) \
+    return jsonify(recipes=filter_recipes_by_diet(recipes, filter_by_diet)) \
         if diet else jsonify(error=HTTPStatus.NOT_ACCEPTABLE)
 
 
