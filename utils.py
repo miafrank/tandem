@@ -1,5 +1,5 @@
 import requests
-from http import HTTPStatus
+
 from config import *
 
 
@@ -19,9 +19,9 @@ def get_recipe_by_ingredients(recipe_name: str, ingredients: list):
 def filter_recipes_by_diet(recipes, filter_by_diet):
     result = []
     if filter_by_diet:
-        for tacos in range(len(recipes)):
-            ingredient_list = [ele.strip() for ele in recipes[tacos]['ingredients'].split(',')]
+        for recipe in range(len(recipes)):
+            ingredient_list = [ele.strip() for ele in recipes[recipe]['ingredients'].split(',')]
             if not any(set(ingredient_list).intersection(set(filter_by_diet))):
-                result.append(recipes[tacos])
+                result.append(recipes[recipe])
         return result
     return recipes
