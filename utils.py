@@ -10,9 +10,6 @@ def get_recipe_by_name(recipe_name: str):
 
 
 def get_recipe_by_ingredients(ingredients: list):
-    if not ingredients:
-        return HTTPStatus.NOT_ACCEPTABLE
-
     ingredients_query = ','.join(ingredients)
     resp = requests.get(f'{API_URL}/?i={ingredients_query}')
     resp.raise_for_status()
