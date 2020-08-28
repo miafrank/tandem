@@ -20,15 +20,15 @@ such as those who eat Vegetarian, Vegan, Gluten-free, Dairy-free, Halal, Kosher,
 $ python api.py
 ```
 
-## Run Tests
-1. `$ python -m unittest discover`
-
-## Testing the API
+## Testing the API In Postman
 1. Included in the repo is a `.postman_collection.json` file that can be opened in [Postman](https://www.postman.com/). 
 To import the file into Postman
     1. `Import` > `Upload Files` > Select the file `Guac Is Extra.postman_collection.json`
     2. Once the server is running, you will be able to hit the endpoints in the collection!
-    
+ 
+## Run Tests
+1. `$ python -m unittest discover`
+
 ## API Endpoints
 |request name  |  request value  |
 :-------:|:-------:
