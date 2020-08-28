@@ -1,4 +1,5 @@
 import itertools
+import logging
 
 from flask import Flask, jsonify
 
@@ -7,6 +8,7 @@ from diets import load_diets
 from utils import *
 
 app = Flask(__name__)
+app.logger.setLevel(level=logging.INFO)
 
 
 @app.route('/recipes/<name>', methods=['GET'])
