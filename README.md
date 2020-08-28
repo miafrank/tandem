@@ -13,12 +13,11 @@ such as those who eat Vegetarian, Vegan, Gluten-free, Dairy-free, Halal, Kosher,
 1. Set up virtual environment using [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/basics.html) in project directory: 
     1. `$ pip install pipenv`
     1. `$ pipenv install`
+    1. `$ pipenv shell`
 
 ## Start the app with auto reload
 ```
-$ export FLASK_APP=api.py
-$ export FLASK_DEBUG=1
-$ flask run
+$ python api.py
 ```
 
 ## Run Tests
