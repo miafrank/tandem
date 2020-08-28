@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "bbbdd705-b717-43c9-8357-12a79dccd21f",
+		"name": "Guac Is Extra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Recipies By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/recipes/tacos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"recipes",
+						"tacos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search By Ingredients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/recipes/ingredients/onions,garlic",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"recipes",
+						"ingredients",
+						"onions,garlic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter By Diet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/recipes/tacos/diet/vegetarian",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"recipes",
+						"tacos",
+						"diet",
+						"vegetarian"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
