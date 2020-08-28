@@ -44,7 +44,7 @@ class TestApi(unittest.TestCase):
         mock_response = self._mock_response(json={'results': [{'the best': 'meal'}]})
         mock_get.return_value = mock_response
 
-        result = get_recipe_by_ingredients(ingredients=['yummy', 'things'])
+        result = get_recipe_by_ingredients(ingredients=['yummy', 'things'], recipe_name="something real good")
 
         self.assertEqual(expected_response, result)
 

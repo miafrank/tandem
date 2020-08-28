@@ -16,10 +16,10 @@ def view_recipes_by_name(name):
     return jsonify(tacos=get_recipe_by_name(name))
 
 
-@app.route('/recipes/ingredients/<ingredients>', methods=['GET'])
-def search_by_ingredients(ingredients):
+@app.route('/recipes/<name>/ingredients/<ingredients>', methods=['GET'])
+def search_by_ingredients(name, ingredients):
     ingredients_list = ingredients.split(',')
-    return jsonify(tacos=get_recipe_by_ingredients(ingredients_list)) \
+    return jsonify(tacos=get_recipe_by_ingredients(name, ingredients_list)) \
         if ingredients else jsonify(error=HTTPStatus.NOT_ACCEPTABLE)
 
 
