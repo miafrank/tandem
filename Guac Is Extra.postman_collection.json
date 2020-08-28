@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bbbdd705-b717-43c9-8357-12a79dccd21f",
+		"_postman_id": "0212dd9b-db63-4ae4-907f-971214412f21",
 		"name": "Guac Is Extra",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -34,7 +34,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/recipes/ingredients/onions,garlic",
+					"raw": "http://127.0.0.1:5000/recipes/taco/ingredients/onions,garlic",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -45,6 +45,7 @@
 					"port": "5000",
 					"path": [
 						"recipes",
+						"taco",
 						"ingredients",
 						"onions,garlic"
 					]

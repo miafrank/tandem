@@ -9,19 +9,19 @@ def get_recipe_by_name(recipe_name: str):
     return resp.json()['results']
 
 
-def get_recipe_by_ingredients(ingredients: list):
+def get_recipe_by_ingredients(recipe_name: str, ingredients: list):
     ingredients_query = ','.join(ingredients)
-    resp = requests.get(f'{API_URL}/?i={ingredients_query}')
+    resp = requests.get(f'{API_URL}/?i={ingredients_query}&q={recipe_name}')
     resp.raise_for_status()
     return resp.json()['results']
 
 
-def filter_recipes_by_diet(taco_recipes, filter_by_diet):
+def filter_recipes_by_diet(recipes, filter_by_diet):
     result = []
     if filter_by_diet:
-        for tacos in range(len(taco_recipes)):
-            ingredient_list = [ele.strip() for ele in taco_recipes[tacos]['ingredients'].split(',')]
+        for tacos in range(len(recipes)):
+            ingredient_list = [ele.strip() for ele in recipes[tacos]['ingredients'].split(',')]
             if not any(set(ingredient_list).intersection(set(filter_by_diet))):
-                result.append(taco_recipes[tacos])
+                result.append(recipes[tacos])
         return result
-    return taco_recipes
+    return recipes

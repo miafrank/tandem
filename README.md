@@ -33,5 +33,5 @@ To import the file into Postman
 |request name  |  request value  |
 :-------:|:-------:
 |get recipe by name   | _GET/recipes/{recipe or food name}_
-|get recipe by ingredients        | _GET/recipes/ingredients/{ingredients, another}_
+|get recipe by ingredients        | _GET/recipes/{recipe or food name}/ingredients/{ingredients, another}_
 |get recipe by dietary restrictions    | _GET/recipes/{recipe or food name}/diet/{diet}_
