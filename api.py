@@ -9,23 +9,23 @@ from utils import *
 app = Flask(__name__)
 
 
-@app.route('/tacos', methods=['GET'])
-def get_all_tacos():
-    return jsonify(tacos=get_recipe_by_name(MEAL))
+@app.route('/recipes/<name>', methods=['GET'])
+def view_recipes_by_name(name):
+    return jsonify(tacos=get_recipe_by_name(name))
 
 
-@app.route('/tacos/ingredients/<ingredients>', methods=['GET'])
+@app.route('/recipes/ingredients/<ingredients>', methods=['GET'])
 def search_by_ingredients(ingredients):
     ingredients_list = ingredients.split(',')
     return jsonify(tacos=get_recipe_by_ingredients(ingredients_list)) \
         if ingredients else jsonify(error=HTTPStatus.NOT_ACCEPTABLE)
 
 
-@app.route('/tacos/diet/<diet>', methods=['GET'])
-def search_by_diet(diet):
-    taco_recipes = get_recipe_by_name(MEAL)
+@app.route('/recipes/<name>/diet/<diet>', methods=['GET'])
+def search_by_diet(name, diet):
+    recipes = get_recipe_by_name(name)
     filter_by_diet = list(itertools.chain(*get_ingredient_violations_by_diet(diet)))
-    return jsonify(tacos=filter_recipes_by_diet(taco_recipes, filter_by_diet)) \
+    return jsonify(tacos=filter_recipes_by_diet(recipes, filter_by_diet)) \
         if diet else jsonify(error=HTTPStatus.NOT_ACCEPTABLE)
 
 
