@@ -35,3 +35,7 @@ To import the file into Postman
 |get recipe by name   | _GET/recipes/{recipe or food name}_
 |get recipe by ingredients        | _GET/recipes/{recipe or food name}/ingredients/{ingredients, another}_
 |get recipe by dietary restrictions    | _GET/recipes/{recipe or food name}/diet/{diet}_
+
+### Bonus
+I included some other food API's and weighed out pros/cons. I ended up going with one that was recommended 
+in the challenge though :)
